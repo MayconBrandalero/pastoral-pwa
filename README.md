@@ -1,59 +1,21 @@
-# PastoralPwa
+# PWA de Acompanhamento Nutricional Infantil — Pastoral da Criança
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.27.
+Protótipo de aplicativo desenvolvido em **Angular (Standalone)** e **Angular Material** configurado como Progressive Web App (PWA), criado para auxiliar voluntárias da Pastoral da Criança no registo e acompanhamento nutricional de crianças em comunidade.
 
-## Development server
+## 📱 Funcionalidades do MVP (Fluxo de Telas)
+1. **Tela de Busca (Menu Principal):** Permite localizar rapidamente fichas de crianças cadastradas ou iniciar um novo registo através de um botão flutuante.
+2. **Tela de Formulário (Registo de Pesagem):** Recolha rápida de dados antropométricos essenciais (peso em kg e altura em cm) com validação de entradas.
+3. **Tela de Resultado e Histórico:** Confirmação visual de salvamento em modo offline e exibição do histórico nutricional comparativo.
 
-To start a local development server, run:
+## 🛠️ Tecnologias Utilizadas
+- **Frontend:** Angular (Standalone Components)
+- **UI Framework:** Angular Material
+- **PWA:** Angular Service Worker (`@angular/pwa`)
+- **Controle de Versão:** Git & GitHub
 
-```bash
-ng serve
-```
+## 🚀 Como Executar o Projeto Localmente
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Certifique-se de ter o Node.js e o Angular CLI instalados.
+2. Clone este repositório:
+   ```bash
+   git clone [https://github.com/MayconBrandalero/pastoral-pwa.git](https://github.com/MayconBrandalero/pastoral-pwa.git)

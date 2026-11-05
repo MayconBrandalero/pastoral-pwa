@@ -1,0 +1,26 @@
+<mat-card style="padding: 16px; margin-bottom: 16px;">
+  <h2 style="margin: 0; font-size: 20px;">Lucas Gabriel Silva</h2>
+  <p style="color: gray; margin-top: 4px;">Idade: 3 anos e 2 meses</p>
+</mat-card>
+
+<form (ngSubmit)="salvar()">
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Peso (kg)</mat-label>
+    <input matInput type="number" step="0.1" [(ngModel)]="peso" name="peso" required style="font-size: 18px;">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Altura (cm)</mat-label>
+    <input matInput type="number" step="0.5" [(ngModel)]="altura" name="altura" required style="font-size: 18px;">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Observação de Saúde</mat-label>
+    <textarea matInput rows="3" [(ngModel)]="obs" name="obs" placeholder="Ex: Criança ativa, sem queixas."></textarea>
+  </mat-form-field>
+
+  <div style="display: flex; gap: 12px; margin-top: 16px;">
+    <button mat-strokedbutton type="button" style="flex: 1; height: 48px;" (click)="cancelar()">Cancelar</button>
+    <button mat-raisedbutton color="primary" type="submit" style="flex: 1; height: 48px;">Salvar Pesagem</button>
+  </div>
+</form>

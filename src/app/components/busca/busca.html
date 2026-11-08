@@ -1,19 +1,49 @@
 <mat-form-field appearance="outline" style="width: 100%;">
-  <mat-label>Buscar por criança ou responsável...</mat-label>
-  <input matInput placeholder="Ex: Lucas">
-  <mat-icon matSuffix>search</mat-icon>
+  <mat-label>Buscar por criança ou responsável</mat-label>
+  <input
+    matInput
+    type="search"
+    name="termoBusca"
+    [(ngModel)]="termoBusca"
+    placeholder="Ex.: Lucas ou Mariana"
+    aria-label="Buscar por nome da criança ou da pessoa responsável"
+  >
+  <mat-icon matSuffix aria-hidden="true">search</mat-icon>
 </mat-form-field>
 
-<h3 style="margin-top: 8px;">Crianças Cadastradas</h3>
+<h3 style="margin-top: 8px;">Crianças cadastradas</h3>
 
-<mat-card *ngFor="let c of criancas" style="margin-bottom: 12px; padding: 12px; cursor: pointer;" (click)="irParaFormulario()">
-  <mat-card-title style="font-size: 18px; font-weight: bold;">{{ c.nome }}</mat-card-title>
+<mat-card
+  *ngFor="let c of criancasFiltradas"
+  style="margin-bottom: 12px; padding: 12px; cursor: pointer;"
+  (click)="irParaFormulario()"
+>
+  <mat-card-title style="font-size: 18px; font-weight: bold;">
+    {{ c.nome }}
+  </mat-card-title>
+
   <mat-card-subtitle>
-    Idade: {{ c.idade }} <br>
+    Idade: {{ c.idade }}<br>
     Responsável: {{ c.responsavel }}
   </mat-card-subtitle>
 </mat-card>
 
-<button mat-fab color="primary" style="position: fixed; bottom: 24px; right: 24px; min-width: 56px; min-height: 56px;" (click)="irParaFormulario()">
-  <mat-icon>add</mat-icon>
+<div
+  *ngIf="criancasFiltradas.length === 0"
+  role="status"
+  aria-live="polite"
+  style="padding: 16px 0;"
+>
+  Nenhuma criança encontrada para essa busca.
+</div>
+
+<button
+  mat-fab
+  color="primary"
+  aria-label="Iniciar demonstração de acompanhamento"
+  title="Iniciar demonstração de acompanhamento"
+  style="position: fixed; bottom: 24px; right: 24px; min-width: 56px; min-height: 56px;"
+  (click)="irParaFormulario()"
+>
+  <mat-icon aria-hidden="true">add</mat-icon>
 </button>

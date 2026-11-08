@@ -1,0 +1,111 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.app-toolbar {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  height: auto;
+  padding: 8px 16px;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.accessibility-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 8px;
+}
+
+.control-label {
+  margin: 0 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.zoom-button,
+.reset-button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.reset-button {
+  min-width: 64px;
+  font-size: 14px;
+}
+
+.zoom-value {
+  min-width: 44px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.online-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.online-status mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}
+
+.app-content {
+  box-sizing: border-box;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+@media (max-width: 600px) {
+  .app-toolbar {
+    justify-content: center;
+  }
+
+  .brand {
+    width: 100%;
+    text-align: center;
+  }
+
+  .toolbar-actions {
+    justify-content: center;
+    margin-left: 0;
+  }
+}

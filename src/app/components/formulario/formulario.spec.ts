@@ -1,11 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
-import { describe, expect, it, beforeEach, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { FormularioComponent } from './formulario';
 
 describe('FormularioComponent', () => {
   let component: FormularioComponent;
+  let fixture: ComponentFixture<FormularioComponent>;
   let router: Router;
 
   beforeEach(async () => {
@@ -15,8 +16,7 @@ describe('FormularioComponent', () => {
     }).compileComponents();
 
     router = TestBed.inject(Router);
-
-    const fixture = TestBed.createComponent(FormularioComponent);
+    fixture = TestBed.createComponent(FormularioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -31,7 +31,15 @@ describe('FormularioComponent', () => {
     expect(component.obs).toBe('');
   });
 
-  it('solicita navegação para resultado ao salvar', () => {
+  it('avisa que o formulário não grava nem sincroniza dados', () => {
+    const texto = fixture.nativeElement.textContent.toLowerCase();
+
+    expect(texto).toContain('protótipo demonstrativo');
+    expect(texto).toContain('não grava, salva nem sincroniza dados');
+    expect(texto).toContain('continuar demonstração');
+  });
+
+  it('solicita navegação para resultado ao continuar', () => {
     const navegar = vi.spyOn(router, 'navigate').mockResolvedValue(true);
 
     component.salvar();

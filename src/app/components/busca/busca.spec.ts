@@ -1,11 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
-import { describe, expect, it, beforeEach, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { BuscaComponent } from './busca';
 
 describe('BuscaComponent', () => {
   let component: BuscaComponent;
+  let fixture: ComponentFixture<BuscaComponent>;
   let router: Router;
 
   beforeEach(async () => {
@@ -15,8 +16,7 @@ describe('BuscaComponent', () => {
     }).compileComponents();
 
     router = TestBed.inject(Router);
-
-    const fixture = TestBed.createComponent(BuscaComponent);
+    fixture = TestBed.createComponent(BuscaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -25,10 +25,44 @@ describe('BuscaComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('apresenta as duas crianças de demonstração', () => {
-    expect(component.criancas).toHaveLength(2);
-    expect(component.criancas[0].nome).toBe('Lucas Gabriel Silva');
-    expect(component.criancas[1].nome).toBe('Ana Clara Souza');
+  it('apresenta as duas crianças de demonstração inicialmente', () => {
+    expect(component.criancasFiltradas).toHaveLength(2);
+    expect(component.criancasFiltradas[0].nome).toBe('Lucas Gabriel Silva');
+    expect(component.criancasFiltradas[1].nome).toBe('Ana Clara Souza');
+  });
+
+  it('filtra pelo nome da criança sem diferenciar maiúsculas e minúsculas', () => {
+    component.termoBusca = 'LUCAS';
+
+    expect(component.criancasFiltradas).toHaveLength(1);
+    expect(component.criancasFiltradas[0].nome).toBe('Lucas Gabriel Silva');
+  });
+
+  it('filtra também pelo nome da pessoa responsável', () => {
+    component.termoBusca = 'carla';
+
+    expect(component.criancasFiltradas).toHaveLength(1);
+    expect(component.criancasFiltradas[0].nome).toBe('Ana Clara Souza');
+  });
+
+  it('ignora acentos na busca', () => {
+    component.termoBusca = 'ana clara';
+
+    expect(component.criancasFiltradas).toHaveLength(1);
+    expect(component.criancasFiltradas[0].nome).toBe('Ana Clara Souza');
+  });
+
+  it('exibe mensagem quando não encontra resultados', () => {
+    component.termoBusca = 'nome inexistente';
+    fixture.detectChanges();
+
+    const mensagem = fixture.nativeElement.querySelector(
+      '[role="status"]',
+    ) as HTMLElement | null;
+
+    expect(mensagem?.textContent).toContain(
+      'Nenhuma criança encontrada para essa busca.',
+    );
   });
 
   it('solicita navegação para o formulário', () => {

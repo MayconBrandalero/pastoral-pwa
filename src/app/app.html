@@ -1,10 +1,66 @@
-<mat-toolbar color="primary" style="display: flex; justify-content: space-between;">
-  <span>Pastoral da Criança</span>
-  <span style="font-size: 12px; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 4px;">
-    <mat-icon style="font-size: 14px; height: 14px; width: 14px; vertical-align: middle;">wifi</mat-icon> Online
-  </span>
-</mat-toolbar>
+<div class="app-shell" [style.zoom]="zoomLevel">
+  <mat-toolbar color="primary" class="app-toolbar">
+    <span class="brand">Pastoral da Criança</span>
 
-<div style="padding: 16px; max-width: 480px; margin: 0 auto;">
-  <router-outlet></router-outlet>
+    <div class="toolbar-actions">
+      <div
+        class="accessibility-controls"
+        role="group"
+        aria-label="Controles de ampliação da interface"
+      >
+        <span class="control-label">Acessibilidade</span>
+
+        <button
+          mat-button
+          type="button"
+          class="zoom-button"
+          aria-label="Diminuir ampliação da interface"
+          title="Diminuir ampliação"
+          (click)="diminuirAmpliacao()"
+        >
+          A−
+        </button>
+
+        <span
+          class="zoom-value"
+          aria-live="polite"
+          aria-atomic="true"
+          aria-label="Nível de ampliação"
+        >
+          {{ zoomPercent }}%
+        </span>
+
+        <button
+          mat-button
+          type="button"
+          class="zoom-button"
+          aria-label="Ampliar a interface"
+          title="Ampliar interface"
+          (click)="ampliarInterface()"
+        >
+          A+
+        </button>
+
+        <button
+          mat-button
+          type="button"
+          class="reset-button"
+          aria-label="Restaurar ampliação padrão"
+          title="Restaurar tamanho padrão"
+          (click)="restaurarAmpliacao()"
+        >
+          Padrão
+        </button>
+      </div>
+
+      <span class="online-status">
+        <mat-icon aria-hidden="true">wifi</mat-icon>
+        Online
+      </span>
+    </div>
+  </mat-toolbar>
+
+  <main class="app-content" aria-label="Conteúdo principal">
+    <router-outlet></router-outlet>
+  </main>
 </div>

@@ -1,22 +1,41 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { Router, provideRouter } from '@angular/router';
+import { describe, expect, it, beforeEach, vi } from 'vitest';
 
-import { Busca } from './busca';
+import { BuscaComponent } from './busca';
 
-describe('Busca', () => {
-  let component: Busca;
-  let fixture: ComponentFixture<Busca>;
+describe('BuscaComponent', () => {
+  let component: BuscaComponent;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Busca],
+      imports: [BuscaComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Busca);
+    router = TestBed.inject(Router);
+
+    const fixture = TestBed.createComponent(BuscaComponent);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('cria o componente de busca', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('apresenta as duas crianças de demonstração', () => {
+    expect(component.criancas).toHaveLength(2);
+    expect(component.criancas[0].nome).toBe('Lucas Gabriel Silva');
+    expect(component.criancas[1].nome).toBe('Ana Clara Souza');
+  });
+
+  it('solicita navegação para o formulário', () => {
+    const navegar = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+
+    component.irParaFormulario();
+
+    expect(navegar).toHaveBeenCalledWith(['/formulario']);
   });
 });

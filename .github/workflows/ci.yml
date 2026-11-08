@@ -1,0 +1,29 @@
+name: Testes e build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  testar-e-compilar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci --legacy-peer-deps
+
+      - name: Executar testes com cobertura
+        run: npm test -- --watch=false --coverage
+
+      - name: Gerar build de produção
+        run: npm run build
